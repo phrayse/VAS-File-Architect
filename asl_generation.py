@@ -10,7 +10,7 @@ Returns:
   asl_template (str): The contents of the ASL file, to be created directly within the VAS archive.
 """
 def create_asl(mask_names):
-  comment = f"""// Generated using VAS File Architect by Phrayse (fast@phrayse.au)
+  comment = f"""// Generated using VAS File Architect by Phrayse
 // https://github.com/phrayse/VAS-File-Architect
 //
 // Recognised masks:"""

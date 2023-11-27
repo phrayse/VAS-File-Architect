@@ -42,7 +42,7 @@ def create_xml(all_image_data, root_directory):
                 'xsi': "http://www.w3.org/2001/XMLSchema-instance"}
   # Create XML tree elements
   game_profile = ET.Element("GameProfile", attrib={f"xmlns:{k}": v for k, v in namespaces.items()})
-  game_profile.insert(0, ET.Comment("Generated using VAS File Architect by Phrayse (fast@phrayse.au)"))
+  game_profile.insert(0, ET.Comment("Generated using VAS File Architect by Phrayse"))
   game_profile.insert(1, ET.Comment("https://github.com/phrayse/VAS-File-Architect"))
   ET.SubElement(game_profile, "Name").text = Path(root_directory).name
   screens = ET.SubElement(game_profile, "Screens")
