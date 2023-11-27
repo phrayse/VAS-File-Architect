@@ -1,7 +1,21 @@
 # VAS-File-Architect
 
+## Table of Contents
+1. [Overview](#overview)
+2. [Requirements](#requirements)
+3. [Installation](#installation)
+4. [Standalone Executable](#standalone-executable)
+5. [Preparing Mask Images](#preparing-mask-images-for-vas-file-architect)
+6. [Usage](#usage)
+7. [Modules](#modules)
+8. [Test Data](#test-data)
+9. [Notes](#notes)
+10. [Limitations](#limitations)
+11. [Contributions and Feedback](#contributions-and-feedback)
+12. [License](#license)
+
 ## Overview
-VAS File Architect is a Python-based tool designed to streamline the creation of VAS (Video Auto Split) archives for use with ROMaster2's VideoAutoSplit component (https://github.com/ROMaster2/LiveSplit.VideoAutoSplit).
+VAS File Architect is a Python-based tool designed to streamline the creation of VAS (Video Auto Split) archives for use with ROMaster2's VideoAutoSplit component (https://github.com/ROMaster2/LiveSplit.VideoAutoSplit).  
 It scans PNG images to identify the non-transparent areas, crops each image to create a mask, generates XML and ASL files based on various attributes of the masks, and compiles these assets into a VAS archive.
 
 ## Requirements
@@ -17,6 +31,9 @@ pip install Pillow
 ```
 
 Tkinter typically comes pre-installed with Python. If it's not present, refer to Tkinter installation guides based on your operating system.
+
+## Standalone Executable
+If installing Python doesn't sound appealing, download the standalone `VAS File Architect.exe` release.
 
 ## Preparing Mask Images for VAS File Architect
 Creating effective mask images for use with VAS File Architect is a simple two-step process. Follow these guidelines to ensure your images are ready:
@@ -46,6 +63,11 @@ These reference images can now be processed by VAS File Architect to create the 
 4. **Output:**
    - The final output is a `.vas` archive in the target directory, containing cropped masks and the generated XML/ASL files.
    - Note: The tool does not write the actual script part of the `.asl` file. This needs to be done by the user based on their specific requirements.
+
+5. **Post-Processing:**
+   - Open the `.vas` archive as you would a `.zip` or `.7z` archive.
+   - Extract the `script.asl` file and implement your own code.
+   - Copy your updated `script.asl` file back into the `.vas` archive.
 
 ## Modules
 1. **main.py:** Orchestrates the entire workflow, from image processing to VAS archive creation.
