@@ -58,7 +58,7 @@ These reference images can now be processed by VAS File Architect to create the 
 
 3. **Processing:**
    - The tool processes each `.png` image, identifying and cropping non-transparent areas.
-   - It then generates `structure.xml` with WatchZones based on cropped areas and a template `script.asl` containing recognised masks.
+   - It then generates a completed `structure.xml` file with WatchZones based on cropped areas, and a `script.asl` shell from a template.
 
 4. **Output:**
    - The final output is a `.vas` archive in the target directory, containing cropped masks and the generated `.xml`/`.asl` files.
@@ -73,7 +73,7 @@ These reference images can now be processed by VAS File Architect to create the 
 1. **main.py:** Orchestrates the entire workflow, from image processing to `.vas` archive creation.
 2. **image_processing.py:** Handles image processing, specifically cropping non-transparent areas.
 3. **xml_generation.py:** Generates `.xml` content for WatchZones based on processed image data.
-4. **asl_generation.py:** Generates `.asl` content from a template with recognised masks commented in for reference.
+4. **asl_generation.py:** Generates an `.asl` file from a template with recognised masks commented in for reference.
 5. **vas_archive_generation.py:** Compiles processed images and generated `.xml`/`.asl` files into a `.vas` archive.
 
 ## Test Data
@@ -87,10 +87,10 @@ Refer to the `README.md` within the `test-folder` for more details on the conten
 - Full-sized, primarily transparent `.png` images are required for effective mask identification.
 
 ## Limitations
-- The tool assigns a unique WatchZone to each mask, even if multiple masks share identical bounding box coordinates ($x_0,y_0,x_1,y_1$).
+- The tool assigns a unique WatchZone to each mask, even if multiple masks share identical bounding box coordinates.
 
 ## Contributions and Feedback
-Contributions to the VAS File Architect are welcome! If you have suggestions or improvements, please feel free to contribute or reach out at fast[at]phrayse[dot]au or on discord.
+Contributions to the VAS File Architect are welcome! If you have suggestions or improvements, please feel free to contribute or message me directly.
 
 ## License
 VAS File Architect is released under the MIT License. For more details, see the LICENSE file in the repository.
