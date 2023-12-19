@@ -8,7 +8,7 @@ Functions:
 Parameters:
   mask_names (list of str): Recognised mask names from image processing.
 Returns:
-  asl_template (str): The contents of the ASL file, to be created directly within the VAS archive.
+  asl (str): The contents of the ASL file, to be created directly within the VAS archive.
 """
 def create_asl(mask_names):
   comment = "// Generated using VAS File Architect: https://github.com/phrayse/VAS-File-Architect\n\n// Recognised masks:\n"
@@ -27,9 +27,9 @@ def create_asl(mask_names):
   }
 
   # Compile .asl contents
-  asl_template = f"{comment}{recognised_masks}\n"
+  asl = f"{comment}{recognised_masks}\n"
   for action in dict_of_actions:
     action_string = f"\n{action}\n{{\n\t// {dict_of_actions[action]}\n}}\n"
-    asl_template += action_string
+    asl += action_string
 
-  return asl_template
+  return asl

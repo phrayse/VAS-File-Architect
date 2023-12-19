@@ -10,7 +10,7 @@
 7. [Modules](#modules)
 8. [Test Data](#test-data)
 9. [Notes](#notes)
-10. [Limitations](#limitations)
+10. [Planned Updates](#planned-updates)
 11. [Contributions and Feedback](#contributions-and-feedback)
 12. [License](#license)
 
@@ -42,7 +42,7 @@ Creating effective mask images for use with VAS File Architect is a simple two-s
 
 2. **Edit Screenshots to Create Reference Images:**
    - Open the screenshots in an image editing tool like GIMP (https://www.gimp.org).
-   - Focus on the rectangular area you want to use as a mask. Remove the rest of the image, ensuring the areas you remove are completely transparent.
+   - Focus on the area you want to use as a mask. Remove the rest of the image, ensuring the areas you remove are completely transparent.
       - GIMP: Ensure the alpha channel is present. Rectangle select (hotkey R), invert selection (hotkey Ctrl+I), delete, export as `.png`.
    - **Important: Keep the original dimensions of the screenshot unchanged. Only the content should be altered, not the size.**
 
@@ -73,11 +73,11 @@ These reference images can now be processed by VAS File Architect to create the 
 1. **main.py:** Orchestrates the entire workflow, from image processing to `.vas` archive creation.
 2. **image_processing.py:** Handles image processing, specifically cropping non-transparent areas.
 3. **xml_generation.py:** Generates `.xml` content for WatchZones based on processed image data.
-4. **asl_generation.py:** Generates an `.asl` file from a template with recognised masks commented in for reference.
+4. **asl_generation.py:** Generates an `.asl` file with recognised masks commented in for reference.
 5. **vas_archive_generation.py:** Compiles processed images and generated `.xml`/`.asl` files into a `.vas` archive.
 
 ## Test Data
-A `test-folder` is included in this repository to help you understand how the VAS File Architect works and to provide a quick way to test its functionality. This folder contains sample `.png` images and subdirectories with additional images. These samples are structured to mimic typical usage scenarios and can be used to test the image processing, `.xml` and `.asl` file generation, and `.vas` archive compilation steps of the tool.
+A `test-folder` is included in this repository to help you understand how the VAS File Architect works and to provide a quick way to test its functionality. This folder contains sample `.png` images spread among multiple subdirectories. These samples are structured to mimic typical usage scenarios and can be used to test the image processing, `.xml` and `.asl` file generation, and `.vas` archive compilation steps of the tool.
 
 Refer to the `README.md` within the `test-folder` for more details on the contents and how to use them for testing.
 
@@ -86,8 +86,8 @@ Refer to the `README.md` within the `test-folder` for more details on the conten
 - Ensure the target directory name matches the game name for which the profile is being created.
 - Full-sized, primarily transparent `.png` images are required for effective mask identification.
 
-## Limitations
-- The tool assigns a unique WatchZone to each mask, even if multiple masks share identical bounding box coordinates.
+## Planned updates
+- Image masks with similar but not identical bounding box values shall be grouped.
 
 ## Contributions and Feedback
 Contributions to the VAS File Architect are welcome! If you have suggestions or improvements, please feel free to contribute or message me directly.
