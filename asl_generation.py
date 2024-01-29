@@ -1,4 +1,4 @@
-""""
+"""
 ASL Generation for VAS File Architect
 
 Generates an AutoSplit Language (ASL) script skeleton.
@@ -13,7 +13,6 @@ Functions:
         Returns:
             str: The generated ASL script content.
 """
-import logging
 
 
 def create_asl(mask_names):
@@ -36,11 +35,10 @@ def create_asl(mask_names):
         # "undoSplit": "Not implemented in VAS"
     }
 
-    # Compile .asl contents
-    logging.info("Beginning ASL generation.")
     asl = f"{comment}{recognised_masks}\n"
+
     for action in dict_of_actions:
         action_string = f"\n{action}\n{{\n\t// {dict_of_actions[action]}\n}}\n"
         asl += action_string
-    logging.info("ASL generation completed.")
+
     return asl

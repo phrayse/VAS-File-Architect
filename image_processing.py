@@ -76,64 +76,75 @@ def process_all_images(filepaths):
     directory_to_filepaths = defaultdict(list)
 
     logging.info("Beginning image processing for all filepaths.")
-    # Extract corners and group filepaths by directory
+
     for filepath in filepaths:
         tl, br, directory = extract_corners(filepath)
         if tl and br:
-            filepath_to_corners[filepath] = (tl, br)
+            filepath_to_corners[filepath] = (tl, br, directory)
             directory_to_filepaths[directory].append(filepath)
 
     all_grouped_images = {}
     tolerance = 10
 
-    # Process each directory's images.
     for directory, dir_filepaths in directory_to_filepaths.items():
         logging.info(f"Processing images in directory: {directory}")
+
         try:
-            # Skip DBSCAN if there are fewer than 3 images in a directory.
-            if len(dir_filepaths) <= 1:
-                continue
+            if len(dir_filepaths) == 1:
+                logging.info(f"One image file located.")
+                all_grouped_images[(0, 0, directory)] = [dir_filepaths[0]]
             elif len(dir_filepaths) == 2:
+                logging.info(f"Two image files located.")
                 filepath1, filepath2 = dir_filepaths
+
                 if are_images_close(filepath_to_corners[filepath1], filepath_to_corners[filepath2], tolerance):
+                    logging.info("Grouping images due to proximity.")
                     all_grouped_images[(0, 0, directory)] = dir_filepaths
             else:
-                # Apply DBSCAN to top-left and bottom-right corners.
+                logging.info("Beginning DBSCAN clustering.")
                 tl_corners = [filepath_to_corners[fp][0] for fp in dir_filepaths]
                 br_corners = [filepath_to_corners[fp][1] for fp in dir_filepaths]
+
                 tl_clusters = apply_dbscan_to_corners(np.array(tl_corners), epsilon=tolerance)
                 br_clusters = apply_dbscan_to_corners(np.array(br_corners), epsilon=tolerance)
+
                 grouped_images = group_images_by_clusters(dir_filepaths, filepath_to_corners, tl_clusters, br_clusters)
                 all_grouped_images.update(grouped_images)
+
         except Exception as e:
             logging.error(f"Error processing images in directory {directory}: {e}")
-            continue
 
     logging.info("Completed image grouping. Updating bounding boxes.")
-    # Update bounding boxes in filepath_to_corners dictionary with group MBR values.
+
     for group, group_filepaths in all_grouped_images.items():
         try:
-            # Extract bounding boxes for the current group.
-            bboxes = [filepath_to_corners[filepath] for filepath in group_filepaths]
-            # Calculate the MBR for the group.
+            bboxes = [filepath_to_corners[filepath][:2] for filepath in group_filepaths]
             mbr = calculate_mbr_for_group(bboxes)
-            # Update bounding boxes of all images in the group.
+
             for filepath in group_filepaths:
                 filepath_to_corners[filepath] = mbr
+
         except Exception as e:
             logging.error(f"Error updating bounding boxes for group {group}: {e}")
 
-    # Process each image with updated bounding boxes.
     all_image_data, skipped_files = [], []
+
     for filepath in filepaths:
         try:
             updated_bbox = filepath_to_corners.get(filepath, None)
+
             if updated_bbox:
                 result = process_image(filepath, updated_bbox)
+
                 if result:
-                    all_image_data.append(result)
+                    bbox, cropped_img = result
+                    image_data = {'filepath': filepath, 'bbox': bbox, 'cropped_img': cropped_img}
+                    logging.info(f"Appending image: {filepath.stem}")
+                    all_image_data.append(image_data)
                 else:
+                    logging.warning(f"Skipping image: {filepath.stem}.")
                     skipped_files.append(filepath)
+
         except Exception as e:
             logging.error(f"Error processing image {filepath}: {e}")
             skipped_files.append(filepath)
@@ -146,23 +157,25 @@ def process_image(filepath, bbox=None):
     try:
         with Image.open(filepath) as img:
             if img.mode != 'RGBA':
-                logging.info(f"Converting {filepath} from {img.mode} to RGBA")
+                logging.info(f"Converting {filepath.stem} from {img.mode} to RGBA for processing.")
                 img = img.convert('RGBA')
+
             if not bbox:
                 bbox = img.getbbox()
-                logging.debug(f"{filepath} bbox: {bbox}")
+
             if bbox:
                 cropped_img = img.crop(bbox)
-                logging.info(f'Image processed: {filepath}')
+                logging.info(f"Image processed: {filepath.stem}")
                 return bbox, cropped_img
             else:
-                logging.warning(f'No non-transparent area found in {filepath}')
+                logging.warning(f"No non-transparent area found in {filepath}")
                 return None
+
     except IOError as e:
-        logging.error(f'IOError while accessing {filepath}: {e}')
+        logging.error(f"IOError while accessing {filepath}: {e}")
         return None
     except Exception as e:
-        logging.error(f'Unexpected error while processing file {filepath}: {e}')
+        logging.error(f"Unexpected error while processing file {filepath}: {e}")
         return None
 
 
@@ -170,19 +183,21 @@ def extract_corners(filepath):
     try:
         with Image.open(filepath) as img:
             if img.mode != 'RGBA':
-                logging.info(f"Converting {filepath} from {img.mode} to RGBA")
+                logging.info(f"Converting {filepath.stem} from {img.mode} to RGBA")
                 img = img.convert('RGBA')
+
             bbox = img.getbbox()
 
             if bbox:
-                logging.info(f"{filepath} bbox: {bbox}")
                 tl_corner = (bbox[0], bbox[1])
                 br_corner = (bbox[2], bbox[3])
                 directory = filepath.parent
-                logging.info(f"tl: {tl_corner}, br: {br_corner}, dir: {directory}")
+                logging.info(f"{filepath.stem}: tl: {tl_corner}, br: {br_corner}, dir: {directory}")
                 return tl_corner, br_corner, directory
+
             logging.warning("No non-transparent area found in image.")
             return None, None, None
+
     except IOError as e:
         logging.error(f"IOError while accessing {filepath}: {e}")
         return None, None, None
@@ -199,27 +214,30 @@ def are_images_close(corners1, corners2, tolerance):
 
 def apply_dbscan_to_corners(corners, epsilon):
     clustering = DBSCAN(eps=epsilon, min_samples=1).fit(corners)
+    logging.info(f"DBSCAN results: {clustering.labels_}")
     return clustering.labels_
 
 
 def group_images_by_clusters(dir_filepaths, filepath_to_corners, tl_clusters, br_clusters):
     grouped_images = defaultdict(list)
-    logging.info("Grouping images into clusters.")
+
+    logging.info("Grouping images as per clusters.")
     for i, filepath in enumerate(dir_filepaths):
         tl_cluster = tl_clusters[i]
         br_cluster = br_clusters[i]
         directory = filepath_to_corners[filepath][2]
         grouped_images[(tl_cluster, br_cluster, directory)].append(filepath)
+        logging.info(f"{filepath.stem} added to group: ({tl_cluster},{br_cluster}).")
+
     logging.info(f"Formed {len(grouped_images)} image groups.")
     return grouped_images
 
 
 def calculate_mbr_for_group(bboxes):
-    logging.info("Calculating MBR for a group of images.")
-    min_x0 = min(bbox[0] for bbox in bboxes)
-    min_y0 = min(bbox[1] for bbox in bboxes)
-    max_x1 = max(bbox[2] for bbox in bboxes)
-    max_y1 = max(bbox[3] for bbox in bboxes)
+    min_x0 = min(bbox[0][0] for bbox in bboxes)
+    min_y0 = min(bbox[0][1] for bbox in bboxes)
+    max_x1 = max(bbox[1][0] for bbox in bboxes)
+    max_y1 = max(bbox[1][1] for bbox in bboxes)
 
-    logging.debug(f"Calculated MBR: {min_x0, min_y0, max_x1, max_y1}")
+    logging.info(f"Calculated MBR: {min_x0, min_y0, max_x1, max_y1}")
     return min_x0, min_y0, max_x1, max_y1

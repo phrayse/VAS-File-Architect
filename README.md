@@ -37,7 +37,7 @@ Alternatively, you can download the executable directly from the Releases page o
 1. Clone the repository or download the executable.
 2. Prepare a directory with full-sized, primarily transparent `.png` images.
 3. Run `main.py` or the executable.
-4. Select the directory with your images through the GUI.
+4. Select the directory containing your images through the GUI.
 5. The program will automatically process the images and generate the `.vas` archive.
 6. Note: The generated `script.asl` file is a template and not a fully functional script. Modify it as needed to complete your ASL script based on your game's specific requirements.
 
@@ -92,7 +92,7 @@ Logging is active and can be found in `app.log`.
 A: Ensure the images are not cropped, and are primarily transparent `.png` files. Check `app.log` for specific error messages.
 
 *Q: How do I modify the ASL script?*  
-A: Open the `script.asl` file from the `.vas` archive and customize the script blocks according to your game's requirements.
+A: Open the `script.asl` file from the `.vas` archive and customize the action blocks as per your specific requirements.
 
 ---
 
