@@ -1,96 +1,105 @@
 # VAS-File-Architect
-
 ## Table of Contents
 1. [Overview](#overview)
-2. [Requirements](#requirements)
-3. [Installation](#installation)
-4. [Standalone Executable](#standalone-executable)
-5. [Preparing Mask Images](#preparing-mask-images-for-vas-file-architect)
-6. [Usage](#usage)
-7. [Modules](#modules)
-8. [Test Data](#test-data)
-9. [Notes](#notes)
-10. [Planned Updates](#planned-updates)
-11. [Contributions and Feedback](#contributions-and-feedback)
-12. [License](#license)
+2. [Installation](#installation)
+3. [Quick Start Guide](#quick-start-guide)
+4. [Benefits](#benefits)
+5. [Preparing Mask Images](#preparing-mask-images)
+6. [Modules](#modules)
+7. [Notes](#notes)
+8. [FAQ or Troubleshooting](#faq-or-troubleshooting)
+9. [Contributing](#contributing)
+10. [License](#license)
+
+---
 
 ## Overview
-VAS File Architect is a Python-based tool designed to streamline the creation of `.vas` (Video Auto Split) archives for use with ROMaster2's VideoAutoSplit component (https://github.com/ROMaster2/LiveSplit.VideoAutoSplit).  
-It scans `.png` images to identify the non-transparent areas, crops each image to create a mask, generates `.xml` and `.asl` files based on various attributes of the masks, and compiles these assets into a `.vas` archive.
+[VAS File Architect](https://github.com/phrayse/VAS-File-Architect) is a comprehensive tool designed to streamline the creation of Video Auto Split (`.vas`) archives for use with [ROMaster2's VideoAutoSplit component](https://github.com/ROMaster2/LiveSplit.VideoAutoSplit).  
+This program automates the process of generating a game profile (`structure.xml`), a template Auto Split Language (ASL) script (`script.asl`), and the final `.vas` archive containing all necessary files.
 
-## Requirements
-- Python 3.x
-- PIL (Python Imaging Library)
-- Tkinter (for GUI operations)
+The primary focus of __VAS File Architect__ is to ensure that I never have to create another `structure.xml` file by hand again - and maybe help others avoid it too.
+
+---
 
 ## Installation
-Ensure Python 3.x is installed on your system. Install the required Python package PIL using pip:
+### Cloning the Repository
+To clone the repository, use the following command:
 
 ```bash
-pip install Pillow
+git clone https://github.com/phrayse/VAS-File-Architect.git
 ```
+### Download Executable
+Alternatively, you can download the executable directly from the Releases page on the GitHub repository.
 
-Tkinter typically comes pre-installed with Python. If it's not present, refer to Tkinter installation guides based on your operating system.
+---
 
-## Standalone Executable
-If installing Python doesn't sound appealing, download the standalone `VAS File Architect.exe` release.
+## Quick Start Guide
+1. Clone the repository or download the executable.
+2. Prepare a directory with full-sized, primarily transparent `.png` images.
+3. Run `main.py` or the executable.
+4. Select the directory with your images through the GUI.
+5. The program will automatically process the images and generate the `.vas` archive.
+6. Note: The generated `script.asl` file is a template and not a fully functional script. Modify it as needed to complete your ASL script based on your game's specific requirements.
 
-## Preparing Mask Images for VAS File Architect
-Creating effective mask images for use with VAS File Architect is a simple two-step process. Follow these guidelines to ensure your images are ready:
-1. **Capture Screenshots for Masks:**
-   - Use a screenshot tool (I use Toufool's AutoSplit (https://github.com/Toufool/AutoSplit)) to capture the scenes or elements from your game that you want to track. These screenshots will serve as the basis for your masks.
+---
 
-2. **Edit Screenshots to Create Reference Images:**
-   - Open the screenshots in an image editing tool like GIMP (https://www.gimp.org).
-   - Focus on the area you want to use as a mask. Remove the rest of the image, ensuring the areas you remove are completely transparent.
-      - GIMP: Ensure the alpha channel is present. Rectangle select (hotkey R), invert selection (hotkey Ctrl+I), delete, export as `.png`.
-   - **Important: Keep the original dimensions of the screenshot unchanged. Only the content should be altered, not the size.**
+## Benefits
+### Easy Game Profile Creation:
+The most significant advantage of using __VAS File Architect__ is its ability to automate the creation of complex game profiles, which are essential for use with the __Video Auto Split__ component.
 
-These reference images can now be processed by VAS File Architect to create the necessary files for your auto-splitting tool.
+### Automated Processing:
+Once the target directory is selected, the program automatically:
+- Groups images based on bounding box coordinates and their containing directory.
+- Generates a `structure.xml` file, creating unique WatchZones for each group of images.
+- Creates a skeleton `script.asl` file containing a list of recognized image masks and placeholders for script development.
+- Compiles the processed images, `script.asl`, and `structure.xml` into a `.vas` archive.
 
-## Usage
-1. **Prepare Target Directory:**
-   - The target directory should be named after the game for which you're building the profile (e.g. "Final Fantasy").
-   - Place the full-sized reference images in this directory. These images should primarily be transparent except for the areas of interest (masks).
+### User-Friendly:
+Through a simple GUI and an automated process, the tool aims to make creation of a `.vas` archive accessible to users regardless of their technical background.
 
-2. **Run the Program:**
-   - Execute `main.py`. The program prompts you to select the target directory using a GUI.
+---
 
-3. **Processing:**
-   - The tool processes each `.png` image, identifying and cropping non-transparent areas.
-   - It then generates a completed `structure.xml` file with WatchZones based on cropped areas, and a `script.asl` shell from a template.
+## Preparing Mask Images
+Effective mask images are crucial for accurate processing. Here's how to prepare them:
 
-4. **Output:**
-   - The final output is a `.vas` archive in the target directory, containing cropped masks and the generated `.xml`/`.asl` files.
-   - Note: The tool does not write the actual script part of the `.asl` file. This needs to be done by the user based on their specific requirements.
+### Capture Screenshots for Masks:
+Use a screenshot tool to capture scenes or elements from your game.  
+These screenshots form the basis for your masks.
 
-5. **Post-Processing:**
-   - Open the `.vas` archive as you would a `.zip` or `.7z` archive.
-   - Extract the `script.asl` file and implement your own code.
-   - Copy your updated `script.asl` file back into the `.vas` archive.
+### Edit Screenshots to Create Masks:
+Open the screenshots in an image editor like [GIMP](https://www.gimp.org).  
+Focus on the area you want to track, ensuring other parts are completely transparent.  
+Maintain the original dimensions of the screenshot.
+
+---
 
 ## Modules
-1. **main.py:** Orchestrates the entire workflow, from image processing to `.vas` archive creation.
-2. **image_processing.py:** Handles image processing, specifically cropping non-transparent areas.
-3. **xml_generation.py:** Generates `.xml` content for WatchZones based on processed image data.
-4. **asl_generation.py:** Generates an `.asl` file with recognised masks commented in for reference.
-5. **vas_archive_generation.py:** Compiles processed images and generated `.xml`/`.asl` files into a `.vas` archive.
+- `main.py`: Coordinates the overall workflow.  
+- `image_processing.py`: Handles image cropping and grouping.  
+- `xml_generation.py`: Generates game profile.  
+- `asl_generation.py`: Creates an Auto Splitting Language script template.  
+- `vas_archive_generation.py`: Compiles assets into a `.vas` archive.
 
-## Test Data
-A `test-folder` is included in this repository to help you understand how the VAS File Architect works and to provide a quick way to test its functionality. This folder contains sample `.png` images spread among multiple subdirectories. These samples are structured to mimic typical usage scenarios and can be used to test the image processing, `.xml` and `.asl` file generation, and `.vas` archive compilation steps of the tool.
-
-Refer to the `README.md` within the `test-folder` for more details on the contents and how to use them for testing.
+---
 
 ## Notes
-- Logging is active and can be found in `app.log`.
-- Ensure the target directory name matches the game name for which the profile is being created.
-- Full-sized, primarily transparent `.png` images are required for effective mask identification.
+Logging is active and can be found in `app.log`.
 
-## Planned updates
-- Image masks with similar but not identical bounding box values shall be grouped.
+---
 
-## Contributions and Feedback
-Contributions to the VAS File Architect are welcome! If you have suggestions or improvements, please feel free to contribute or message me directly.
+## FAQ or Troubleshooting
+*Q: The program fails to process my images. What can I do?*  
+A: Ensure the images are not cropped, and are primarily transparent `.png` files. Check `app.log` for specific error messages.
+
+*Q: How do I modify the ASL script?*  
+A: Open the `script.asl` file from the `.vas` archive and customize the script blocks according to your game's requirements.
+
+---
+
+## Contributing
+Contributions to the project are welcome. Feel free to submit a pull request or message me directly with feedback.
+
+---
 
 ## License
-VAS File Architect is released under the MIT License. For more details, see the LICENSE file in the repository.
+__VAS File Architect__ is released under the MIT License. For more details, see the LICENSE file in the repository.

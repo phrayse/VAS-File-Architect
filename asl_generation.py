@@ -1,35 +1,46 @@
-"""
+""""
 ASL Generation for VAS File Architect
-Generates a skeleton ASL (AutoSplit Language) file from a template.
-Includes a list of recognised masks for easy reference.
+
+Generates an AutoSplit Language (ASL) script skeleton.
+It outlines basic script structure and includes a list of recognized masks from image
+processing, serving as a template for development.
 
 Functions:
-  create_asl(mask_names): Generates ASL file content.
-Parameters:
-  mask_names (list of str): Recognised mask names from image processing.
-Returns:
-  asl (str): The contents of the ASL file, to be created directly within the VAS archive.
+    create_asl(mask_names):
+        Generates the ASL file content.
+        Arg:
+            mask_names (list of str): Names of recognized masks from image processing.
+        Returns:
+            str: The generated ASL script content.
 """
+import logging
+
+
 def create_asl(mask_names):
-  comment = "// Generated using VAS File Architect: https://github.com/phrayse/VAS-File-Architect\n\n// Recognised masks:\n"
-  recognised_masks = "\n".join(f"// features[\"{mask_name}\"]" for mask_name in mask_names)
+    comment = ("// Generated using VAS File Architect: "
+               "https://github.com/phrayse/VAS-File-Architect\n\n"
+               "// Recognised masks:\n")
+    recognised_masks = "\n".join(f"// features[\"{mask_name}\"]" for mask_name in mask_names)
 
-  # Dictionary of actions recognised by VAS, excluding exit, gameTime, and shutdown.
-  dict_of_actions = {
-    "startup": "Initialise settings here: gametime/realtime; refresh rate, etc.",
-    "init": "Declare any variables here.",
-    "start": "Start conditions; reset any required values here.",
-    "update": "Core logic - this block runs first in each iteration.",
-    "split": "Split conditions. ex: return features[\"split-image\"].old > 90",
-    "undoSplit": "Careful!",
-    "reset": "Careful!",
-    "isLoading": "Boolean, controls game time. ex: return features[\"load-screen\"].current > 90",
-  }
+    dict_of_actions = {
+        "startup": "Setup initial settings like refresh rates or game-specific configurations.",
+        "shutdown": "Executed when closing VASL, suitable for cleanup and saving state.",
+        "init": "Initial logic, executed once before the update loop for setting initial variables.",
+        "exit": "Executed when the script exits, for post-timer actions.",
+        "update": "Continuous core logic of the script, executed first in each update cycle.",
+        "start": "Defines start conditions for the timer, including value resets.",
+        "split": "Triggers a split based on specific conditions, e.g., features[\"split-image\"].old > 90.",
+        "reset": "Conditions to reset the timer. Use cautiously.",
+        "isLoading": "Manages game time during load screens, e.g., return features[\"load-screen\"].current > 90",
+        "gameTime": "Handles complex or game-specific game time calculations."
+        # "undoSplit": "Not implemented in VAS"
+    }
 
-  # Compile .asl contents
-  asl = f"{comment}{recognised_masks}\n"
-  for action in dict_of_actions:
-    action_string = f"\n{action}\n{{\n\t// {dict_of_actions[action]}\n}}\n"
-    asl += action_string
-
-  return asl
+    # Compile .asl contents
+    logging.info("Beginning ASL generation.")
+    asl = f"{comment}{recognised_masks}\n"
+    for action in dict_of_actions:
+        action_string = f"\n{action}\n{{\n\t// {dict_of_actions[action]}\n}}\n"
+        asl += action_string
+    logging.info("ASL generation completed.")
+    return asl
