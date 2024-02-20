@@ -27,8 +27,8 @@ from vas_archive_generation import create_vas_archive
 from xml_generation import create_xml
 
 logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(levelname)s - %(filename)s - Line: %(lineno)d - %(message)s',
-                    filename='app.log',
+                    format='%(asctime)s - %(levelname)s - %(filename)s: %(lineno)d - %(message)s',
+                    filename='vasfa.log',
                     filemode='w')
 logging.getLogger("PIL").setLevel(logging.INFO)
 
@@ -36,7 +36,7 @@ logging.getLogger("PIL").setLevel(logging.INFO)
 def select_directory():
     root = Tk()
     root.withdraw()
-    directory = filedialog.askdirectory()
+    directory = filedialog.askdirectory(mustexist=True)
 
     if not directory:
         raise FileNotFoundError("No directory selected.")
@@ -48,7 +48,8 @@ def main():
     try:
         directory = select_directory()
         path = Path(directory)
-        logging.info("Gathering all image files.")
+
+        logging.info("Gathering .png files.")
         image_filepaths = list(path.rglob('*.png'))
 
         all_image_data, skipped_files = process_all_images(image_filepaths)
@@ -56,23 +57,19 @@ def main():
         if not all_image_data:
             raise RuntimeError("No valid images processed.")
 
-        logging.info("Beginning XML generation.")
+        logging.info("Image files processed. Generating XML.")
         mask_names, xml_content = create_xml(all_image_data, path)
 
         if not mask_names:
             raise RuntimeError("XML generation failed.")
 
-        logging.info("XML generation completed")
-
-        logging.info("Beginning ASL generation.")
+        logging.info("Completed XML. Generating ASL.")
         asl_content = create_asl(mask_names)
 
         if not asl_content:
             raise RuntimeError("ASL generation failed.")
 
-        logging.info("ASL generation completed.")
-
-        logging.info("Beginning VAS archive creation.")
+        logging.info("Completed ASL. Generating VAS archive.")
         create_vas_archive(all_image_data, asl_content, xml_content, path)
 
         final_message = "VAS archive created successfully."
