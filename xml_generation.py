@@ -62,7 +62,7 @@ def group_images(all_image_data):
         bbox = image_data['bbox']
         key = (directory, bbox)
         grouped_images[key].append(image_data)
-        logging.info(f"{image_data['filepath'].stem} appended to group: {directory.name}_{bbox}")
+        logging.info(f"Appending {image_data['filepath'].stem} to group: {directory.name}_{bbox}")
 
     logging.info(f"Grouped {len(grouped_images)} sets of images.")
     return grouped_images
@@ -71,15 +71,14 @@ def group_images(all_image_data):
 def enforce_unique_name(base_name, existing_names):
     if base_name not in existing_names:
         return base_name
-    else:
-        count = 1
+    count = 1
+    new_name = f"{base_name}_{count}"
+
+    while new_name in existing_names:
+        count += 1
         new_name = f"{base_name}_{count}"
 
-        while new_name in existing_names:
-            count += 1
-            new_name = f"{base_name}_{count}"
-
-        return new_name
+    return new_name
 
 
 def create_watchzone(params):
@@ -99,7 +98,7 @@ def create_watchzone(params):
     Et.SubElement(watchzone, "Name").text = unique_name
 
     watchzone.append(Et.Comment('ErrorMetric></ErrorMetric'))
-    watchzone.append(Et.Comment('Equalize></Equalize'))
+    watchzone.append(Et.Comment('Equalize>false</Equalize'))
 
     geometry = Et.SubElement(watchzone, "Geometry")
     Et.SubElement(geometry, "X").text = str(bbox[0])
@@ -116,7 +115,7 @@ def create_watchzone(params):
         watch_image = Et.SubElement(watch_images, "WatchImage")
         relative_path = image_data['filepath'].relative_to(root_directory)
         Et.SubElement(watch_image, "FilePath").text = str(relative_path)
-        logging.info(f"{image_data['filepath'].stem} added to WatchZone.")
+        logging.info(f"Added {image_data['filepath'].stem}.")
         mask_names.append(image_data['filepath'].stem)
 
 
@@ -141,7 +140,7 @@ def create_xml(all_image_data, root_directory):
                   'xsi': "http://www.w3.org/2001/XMLSchema-instance"}
 
     repository_link_comment = ("Generated using VAS File Architect: "
-                               "https://github.com/phrayse/VAS-File-Architect")
+                               "https://github.com/phrayse/VAS-File-Architect ")
     error_metric_comment = ("ErrorMetric options: "
                             "default=PeakSignalToNoise | "
                             "MeanErrorPerPixel | "

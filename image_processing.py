@@ -62,6 +62,14 @@ Functions:
             bboxes (list of tuple): Bounding boxes of the images.
         Returns:
             tuple: Coordinates of the minimum bounding rectangle.
+
+    enforce_unique_name(base_name, existing_names):
+        Ensures unique mask names.
+        Arg:
+            base_name (str): The base name for the image mask.
+            existing_names (set of str): Set of existing mask names to avoid duplicates.
+        Returns:
+            str: A unique name for the image mask.
 """
 import logging
 from collections import defaultdict
@@ -75,8 +83,6 @@ def process_all_images(filepaths):
     filepath_to_corners = {}
     directory_to_filepaths = defaultdict(list)
 
-    logging.info("Beginning image processing for all filepaths.")
-
     for filepath in filepaths:
         tl, br, directory = extract_corners(filepath)
         if tl and br:
@@ -84,10 +90,10 @@ def process_all_images(filepaths):
             directory_to_filepaths[directory].append(filepath)
 
     all_grouped_images = {}
-    tolerance = 10
+    tolerance = 10  # Maximum distance in pixels between neighbouring points.
 
     for directory, dir_filepaths in directory_to_filepaths.items():
-        logging.info(f"Processing images in directory: {directory}")
+        logging.info(f"Processing: {directory.parts[-1]}")
 
         try:
             if len(dir_filepaths) == 1:
@@ -100,6 +106,9 @@ def process_all_images(filepaths):
                 if are_images_close(filepath_to_corners[filepath1], filepath_to_corners[filepath2], tolerance):
                     logging.info("Grouping images due to proximity.")
                     all_grouped_images[(0, 0, directory)] = dir_filepaths
+                else:
+                    all_grouped_images[(0, 0, directory)] = [dir_filepaths[0]]
+                    all_grouped_images[(0, 1, directory)] = [dir_filepaths[1]]
             else:
                 logging.info("Beginning DBSCAN clustering.")
                 tl_corners = [filepath_to_corners[fp][0] for fp in dir_filepaths]
@@ -128,6 +137,7 @@ def process_all_images(filepaths):
             logging.error(f"Error updating bounding boxes for group {group}: {e}")
 
     all_image_data, skipped_files = [], []
+    existing_names = set()
 
     for filepath in filepaths:
         try:
@@ -138,11 +148,15 @@ def process_all_images(filepaths):
 
                 if result:
                     bbox, cropped_img = result
+
+                    unique_name = enforce_unique_name(filepath.stem, existing_names)
+                    existing_names.add(unique_name)
+                    filepath = filepath.with_stem(str(unique_name))
+
                     image_data = {'filepath': filepath, 'bbox': bbox, 'cropped_img': cropped_img}
-                    logging.info(f"Appending image: {filepath.stem}")
                     all_image_data.append(image_data)
                 else:
-                    logging.warning(f"Skipping image: {filepath.stem}.")
+                    logging.warning(f"Skipping image: {filepath.stem}")
                     skipped_files.append(filepath)
 
         except Exception as e:
@@ -183,7 +197,7 @@ def extract_corners(filepath):
     try:
         with Image.open(filepath) as img:
             if img.mode != 'RGBA':
-                logging.info(f"Converting {filepath.stem} from {img.mode} to RGBA")
+                logging.info(f"Converting {filepath.stem} from {img.mode} to RGBA.")
                 img = img.convert('RGBA')
 
             bbox = img.getbbox()
@@ -241,3 +255,18 @@ def calculate_mbr_for_group(bboxes):
 
     logging.info(f"Calculated MBR: {min_x0, min_y0, max_x1, max_y1}")
     return min_x0, min_y0, max_x1, max_y1
+
+
+def enforce_unique_name(base_name, existing_names):
+    if base_name not in existing_names:
+        return base_name
+
+    count = 1
+    new_name = f"{base_name}_{count}"
+
+    while new_name in existing_names:
+        count += 1
+        new_name = f"{base_name}_{count}"
+
+    logging.info(f"{base_name} relabelled as {new_name}")
+    return new_name

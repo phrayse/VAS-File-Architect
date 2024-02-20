@@ -1,12 +1,9 @@
-test-folder/
-app.log
+demo-folder/
+vasfa.log
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-
-# Pytest cache
-.pytest_cache/
 
 # Virtual environment
 .venv/
