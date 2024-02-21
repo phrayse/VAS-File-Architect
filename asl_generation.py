@@ -19,7 +19,7 @@ def create_asl(mask_names):
     comment = ("// Generated using VAS File Architect: "
                "https://github.com/phrayse/VAS-File-Architect\n\n"
                "/* Recognised masks:\n")
-    recognised_masks = "\n".join(f"features[\"{mask_name}\"]" for mask_name in mask_names)
+    recognised_masks = "\n".join(f"\tfeatures[\"{mask_name}\"]" for mask_name in mask_names)
 
     dict_of_actions = {
         "startup": "Setup initial settings like refresh rates or game-specific configurations.",

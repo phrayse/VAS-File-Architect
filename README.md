@@ -1,15 +1,14 @@
 # VAS-File-Architect
 ## Table of Contents
 1. [Overview](#overview)
-2. [Installation](#installation)
-3. [Quick Start Guide](#quick-start-guide)
-4. [Benefits](#benefits)
-5. [Preparing Mask Images](#preparing-mask-images)
+2. [Benefits](#benefits)
+3. [Installation](#installation)
+4. [Setup](#setup)
+5. [Usage](#usage)
 6. [Modules](#modules)
-7. [Notes](#notes)
-8. [FAQ or Troubleshooting](#faq-or-troubleshooting)
-9. [Contributing](#contributing)
-10. [License](#license)
+7. [FAQ or Troubleshooting](#faq-or-troubleshooting)
+8. [Contributing](#contributing)
+9. [License](#license)
 
 ---
 
@@ -19,27 +18,7 @@ This program automates the process of generating a game profile (`structure.xml`
 
 The primary focus of __VAS File Architect__ is to ensure that I never have to create another `structure.xml` file by hand again - and maybe help others avoid it too.
 
----
-
-## Installation
-### Cloning the Repository
-To clone the repository, use the following command:
-
-```bash
-git clone https://github.com/phrayse/VAS-File-Architect.git
-```
-### Download Executable
-Alternatively, you can download the executable directly from the Releases page on the GitHub repository.
-
----
-
-## Quick Start Guide
-1. Clone the repository or download the executable.
-2. Prepare a directory with full-sized, primarily transparent `.png` images.
-3. Run `main.py` or the executable.
-4. Select the directory containing your images through the GUI.
-5. The program will automatically process the images and generate the `.vas` archive.
-6. Note: The generated `script.asl` file is a template and not a fully functional script. Modify it as needed to complete your ASL script based on your game's specific requirements.
+![Scan regions in LiveSplit](.github/livesplit_scan_region.png)
 
 ---
 
@@ -51,25 +30,52 @@ The most significant advantage of using __VAS File Architect__ is its ability to
 Once the target directory is selected, the program automatically:
 - Groups images based on bounding box coordinates and their containing directory.
 - Generates a `structure.xml` file, creating unique WatchZones for each group of images.
-- Creates a skeleton `script.asl` file containing a list of recognized image masks and placeholders for script development.
+- Creates a `script.asl` template populated with a list of recognised image masks.
 - Compiles the processed images, `script.asl`, and `structure.xml` into a `.vas` archive.
 
-### User-Friendly:
-Through a simple GUI and an automated process, the tool aims to make creation of a `.vas` archive accessible to users regardless of their technical background.
+### User-friendly
+Once the user selects their target directory, VASFA will handle the rest!<sup>*</sup>  
+![success](.github/vasfa_success.png)
+
+<sub>*except getting the screenshots or making the unnecessary parts of the screenshots transparent or writing the code for the actions in the script file or installing the LiveSplit component or getting the component to recognise your capture card or</sub>
 
 ---
 
-## Preparing Mask Images
-Effective mask images are crucial for accurate processing. Here's how to prepare them:
+## Installation
+### Cloning the Repository
+To clone the repository use the following command:
 
-### Capture Screenshots for Masks:
-Use a screenshot tool to capture scenes or elements from your game.  
-These screenshots form the basis for your masks.
+```bash
+git clone https://github.com/phrayse/VAS-File-Architect.git
+```
+### Download Executable
+Alternatively, you can download the executable directly from the [Releases page](https://github.com/phrayse/VAS-File-Architect/releases).
 
-### Edit Screenshots to Create Masks:
-Open the screenshots in an image editor like [GIMP](https://www.gimp.org).  
-Focus on the area you want to track, ensuring other parts are completely transparent.  
-Maintain the original dimensions of the screenshot.
+---
+
+## Setup
+1. Create a directory with the same name as your game.
+2. Get a screenshot of each frame you wish to use in your splitter.
+3. Use an image editing program such as [GIMP](https://www.gimp.org) to transform each image as follows:
+    - Maintain the original dimensions of the image (don't crop).
+    - Excluding the area you wish to track, make everything transparent.
+    - Export this mostly-transparent image as a `.png` file into your game directory.
+4. (optional) Organise your mask images into subdirectories within the game directory.
+
+![Example directory structure](.github/dir_layout.png)
+
+---
+
+## Usage
+1. Run program, choose target directory.  
+2. Open the resulting `.vas` archive, found inside your target directory.
+3. Open the `script.asl` template and insert your code.
+
+![Choose directory](.github/dir_select.png)  
+
+### Notes
+- Logging is active and can be found in `vasfa.log`.
+- Refer to the [Video Auto Splitter instructions](https://github.com/ROMaster2/LiveSplit.VideoAutoSplit?tab=readme-ov-file#how-to-use) for help installing the LiveSplit component.
 
 ---
 
@@ -82,17 +88,20 @@ Maintain the original dimensions of the screenshot.
 
 ---
 
-## Notes
-Logging is active and can be found in `app.log`.
-
----
-
 ## FAQ or Troubleshooting
-*Q: The program fails to process my images. What can I do?*  
-A: Ensure the images are not cropped, and are primarily transparent `.png` files. Check `app.log` for specific error messages.
+Check `vasfa.log` for detailed info and error messages.  
+Additionally, you can test VASFA out on the demo folder included in the main repository.
 
 *Q: How do I modify the ASL script?*  
 A: Open the `script.asl` file from the `.vas` archive and customize the action blocks as per your specific requirements.
+
+*Q: How do I change the Error Metrics used for image comparisons?*  
+A: Open the `structure.xml` file from the `.vas` archive and uncomment the ErrorMetric tag in the relevant WatchZone.
+Options are listed atop the document in a comment node.
+
+*Q: Why are some of my images being renamed?*  
+A: Image masks must have unique names throughout the directory so the `script.asl` file can differentiate between them.
+The original files will remain untouched, only the archived version is amended.
 
 ---
 

@@ -78,8 +78,8 @@ def main():
             final_message += "\n\nNote: The following files were not processed:\n" + \
                             "\n".join(str(f) for f in skipped_files)
 
-        messagebox.showinfo("VAS File Architect", final_message)
         logging.info(final_message)
+        messagebox.showinfo("VAS File Architect", final_message)
 
     except (FileNotFoundError, RuntimeError, Exception) as e:
         logging.error(e)
