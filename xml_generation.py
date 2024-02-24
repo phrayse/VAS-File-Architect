@@ -1,59 +1,23 @@
 """
 XML Generation for VAS File Architect
 
-Responsible for generating an XML file by grouping image masks into WatchZones based on
-shared bounding box coordinates. This module assists in creating unique WatchZone names,
-formats the XML for readability, and maintains the structure for VAS file usage.
-
-Functions:
-    group_images(all_image_data):
-        Groups image masks by shared bounding boxes.
-        Arg:
-            all_image_data (list of dict): Data of images with file paths and bounding boxes.
-        Returns:
-            defaultdict: Grouped image data by shared bounding boxes.
-
-    enforce_unique_name(base_name, existing_names):
-        Ensures unique WatchZone names.
-        Arg:
-            base_name (str): The base name for the WatchZone.
-            existing_names (set of str): Set of existing WatchZone names to avoid duplicates.
-        Returns:
-            str: A unique name for the WatchZone.
-
-    create_watchzone(params):
-        Creates individual WatchZone XML elements.
-        Arg:
-            params (dict): Parameters for creating a WatchZone.
-        Returns:
-            None
-
-    format_xml(elem, level=0):
-        Formats XML elements for readability.
-        Arg:
-            elem (Element): The XML element to be formatted.
-            level (int): Current indentation level, defaults to 0.
-        Returns:
-            None
-
-    create_xml(all_image_data, root_directory):
-        Generates the complete structure.xml content.
-        Arg:
-            all_image_data (list of dict): Data of images with file paths and bounding boxes.
-            root_directory (Path): Directory for XML file generation.
-        Returns:
-            tuple: Contains a list of mask names and the XML content.
-
-Note:
-- Screen Geometry is hard-coded at 720p until I hear about it causing issues.
+Generates a formatted XML profile with distinct WatchZones created for each group.
 """
 import logging
 import xml.etree.ElementTree as Et
 from collections import defaultdict
 from io import BytesIO
+from pathlib import Path
 
 
 def group_images(all_image_data):
+    """
+    Groups images by shared corner clusters.
+
+    :param list of dict all_image_data: Image data with filepaths and bounding boxes.
+    :return: Grouped images as per bbox clusters.
+    :rtype: defaultdict
+    """
     logging.info("Beginning image grouping.")
     grouped_images = defaultdict(list)
 
@@ -69,6 +33,14 @@ def group_images(all_image_data):
 
 
 def enforce_unique_name(base_name, existing_names):
+    """
+    Enforce unique WatchZone names by appending a counter if name exists.
+
+    :param str base_name: Original name for the WatchZone.
+    :param set of str existing_names: Set of existing WatchZone names.
+    :return: Unique WatchZone name.
+    :rtype: str
+    """
     if base_name not in existing_names:
         return base_name
     count = 1
@@ -82,6 +54,11 @@ def enforce_unique_name(base_name, existing_names):
 
 
 def create_watchzone(params):
+    """
+    Creates individual WatchZone elements for each group.
+
+    :param dict params: dict of image data to be stored in a WatchZone.
+    """
     directory = params['directory']
     bbox = params['bbox']
     images = params['images']
@@ -120,6 +97,12 @@ def create_watchzone(params):
 
 
 def format_xml(elem, level=0):
+    """
+    Format an XML element and any children to a human-readable format by adding indents and newlines.
+
+    :param Et.Element elem: XML element to be formatted.
+    :param int level: Current level of indentation.
+    """
     i = "\n" + level * "\t"
 
     if len(elem):
@@ -136,19 +119,28 @@ def format_xml(elem, level=0):
 
 
 def create_xml(all_image_data, root_directory):
+    """
+    Take all image data and generate a `structure.xml` file.
+
+    :param list of dict all_image_data: dict of each image filepath, bbox, and cropped Image.
+    :param Path root_directory: Target directory.
+    :return: List of mask names and formatted XML content as a string.
+    :rtype: tuple[list, str]
+    :raise RuntimeError: if unable to write XML file to root directory.
+    """
     namespaces = {'xsd': "http://www.w3.org/2001/XMLSchema", 
                   'xsi': "http://www.w3.org/2001/XMLSchema-instance"}
 
-    repository_link_comment = ("Generated using VAS File Architect: "
-                               "https://github.com/phrayse/VAS-File-Architect ")
-    error_metric_comment = ("ErrorMetric options: "
-                            "default=PeakSignalToNoise | "
-                            "MeanErrorPerPixel | "
-                            "Absolute | "
-                            "StructuralDissimilarity")
+    repository_link = ("Generated using VAS File Architect: "
+                       "https://github.com/phrayse/VAS-File-Architect ")
+    error_metrics = ("ErrorMetric options: "
+                     "default=PeakSignalToNoise | "
+                     "MeanErrorPerPixel | "
+                     "Absolute | "
+                     "StructuralDissimilarity")
 
     game_profile = Et.Element("GameProfile", attrib={f"xmlns:{k}": v for k, v in namespaces.items()})
-    game_profile.insert(0, Et.Comment(repository_link_comment))
+    game_profile.insert(0, Et.Comment(repository_link))
     Et.SubElement(game_profile, "Name").text = root_directory.name
 
     screen = Et.SubElement(Et.SubElement(game_profile, "Screens"), "Screen")
@@ -159,7 +151,7 @@ def create_xml(all_image_data, root_directory):
     Et.SubElement(geometry, "Height").text = "720"
 
     watchzones = Et.SubElement(screen, "WatchZones")
-    watchzones.insert(0, Et.Comment(error_metric_comment))
+    watchzones.insert(0, Et.Comment(error_metrics))
 
     grouped_images = group_images(all_image_data)
     existing_names = set()

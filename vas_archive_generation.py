@@ -1,27 +1,25 @@
 """
 VAS Archive Generation for VAS File Architect
 
-Compiles processed images, along with generated XML and ASL files, into a VAS archive.
-This module facilitates the packaging of these components into a single VAS file, which
-is then used with the Video Auto Split tool.
-
-Functions:
-    create_vas_archive(all_image_data, asl_content, xml_content, target_directory):
-        Creates and saves the VAS archive.
-        Arg:
-            all_image_data (list of dict): Processed image data.
-            asl_content (str): Content of the ASL file.
-            xml_content (str): Content of the XML file.
-            target_directory (Path): Target directory to save the VAS archive.
-        Returns:
-            None
+Compiles processed images, `script.asl`, and `structure.xml` into a VAS archive.
 """
 import logging
 import zipfile
 from io import BytesIO
+from pathlib import Path
 
 
 def create_vas_archive(all_image_data, asl_content, xml_content, target_directory):
+    """
+    Creates and saves the VAS archive.
+
+    :param list of dict all_image_data: Processed image data.
+    :param str asl_content: Contents of `script.asl`.
+    :param str xml_content: Contents of `structure.xml`.
+    :param Path target_directory: Target directory into which the VAS archive will be written.
+    :rtype: None
+    :raise RuntimeError:
+    """
     vas_file_path = target_directory / f"{target_directory.name}.vas"
 
     try:

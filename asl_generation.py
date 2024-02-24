@@ -1,21 +1,19 @@
 """
 ASL Generation for VAS File Architect
 
-Generates an AutoSplit Language (ASL) script skeleton.
-It outlines basic script structure and includes a list of recognized masks from image
-processing, serving as a template for development.
-
-Functions:
-    create_asl(mask_names):
-        Generates the ASL file content.
-        Arg:
-            mask_names (list of str): Names of recognized masks from image processing.
-        Returns:
-            str: The generated ASL script content.
+Generates an AutoSplit Language (ASL) script template. Outlines basic script structure, and includes a list
+of recognised masks from image processing to serve as a starting point for development.
 """
 
 
 def create_asl(mask_names):
+    """
+    Generate a template `script.asl` file with a list of recognised images for reference.
+
+    :param list of str mask_names: Names of recognised masks from image processing.
+    :return: Formatted string holding `script.asl` content.
+    :rtype: str
+    """
     comment = ("// Generated using VAS File Architect: "
                "https://github.com/phrayse/VAS-File-Architect\n\n"
                "/* Recognised masks:\n")

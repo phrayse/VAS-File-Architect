@@ -1,160 +1,162 @@
-2024-02-21 11:06:38,331 - INFO - main.py: 52 - Gathering .png files.
-2024-02-21 11:06:38,388 - INFO - image_processing.py: 209 - mps: tl: (407, 59), br: (868, 363), dir: /home/phrayse/VASFA/GameName
-2024-02-21 11:06:38,409 - INFO - image_processing.py: 209 - keeper: tl: (393, 590), br: (886, 708), dir: /home/phrayse/VASFA/GameName/final
-2024-02-21 11:06:38,421 - INFO - image_processing.py: 209 - collector: tl: (393, 590), br: (886, 708), dir: /home/phrayse/VASFA/GameName/final
-2024-02-21 11:06:38,430 - INFO - image_processing.py: 209 - Box: tl: (0, 81), br: (165, 145), dir: /home/phrayse/VASFA/GameName/chapters
-2024-02-21 11:06:38,439 - INFO - image_processing.py: 209 - Necklace: tl: (0, 82), br: (165, 145), dir: /home/phrayse/VASFA/GameName/chapters
-2024-02-21 11:06:38,448 - INFO - image_processing.py: 209 - Key: tl: (0, 83), br: (164, 144), dir: /home/phrayse/VASFA/GameName/chapters
-2024-02-21 11:06:38,457 - INFO - image_processing.py: 209 - Ring: tl: (0, 82), br: (165, 145), dir: /home/phrayse/VASFA/GameName/chapters
-2024-02-21 11:06:38,465 - INFO - image_processing.py: 209 - mps: tl: (407, 59), br: (868, 363), dir: /home/phrayse/VASFA/GameName/stage-clear
-2024-02-21 11:06:38,469 - INFO - image_processing.py: 209 - finaleclear: tl: (42, 51), br: (162, 172), dir: /home/phrayse/VASFA/GameName/stage-clear
-2024-02-21 11:06:38,471 - INFO - image_processing.py: 209 - keeper: tl: (467, 585), br: (960, 703), dir: /home/phrayse/VASFA/GameName/stage-clear
-2024-02-21 11:06:38,474 - INFO - image_processing.py: 209 - titleclear: tl: (424, 56), br: (859, 117), dir: /home/phrayse/VASFA/GameName/stage-clear
-2024-02-21 11:06:38,478 - INFO - image_processing.py: 209 - Box: tl: (5, 86), br: (170, 150), dir: /home/phrayse/VASFA/GameName/stage-clear
-2024-02-21 11:06:38,483 - INFO - image_processing.py: 209 - Key: tl: (0, 79), br: (159, 140), dir: /home/phrayse/VASFA/GameName/stage-clear
-2024-02-21 11:06:38,489 - INFO - image_processing.py: 209 - trbl-corners: tl: (393, 590), br: (886, 708), dir: /home/phrayse/VASFA/GameName/stage-clear
-2024-02-21 11:06:38,496 - INFO - image_processing.py: 209 - stageclear: tl: (409, 216), br: (867, 322), dir: /home/phrayse/VASFA/GameName/stage-clear
-2024-02-21 11:06:38,501 - INFO - image_processing.py: 209 - box: tl: (393, 584), br: (886, 702), dir: /home/phrayse/VASFA/GameName/stage-clear
-2024-02-21 11:06:38,504 - INFO - image_processing.py: 209 - mid-edges: tl: (393, 590), br: (886, 708), dir: /home/phrayse/VASFA/GameName/stage-clear
-2024-02-21 11:06:38,508 - INFO - image_processing.py: 209 - NeckLace: tl: (10, 92), br: (175, 155), dir: /home/phrayse/VASFA/GameName/stage-clear
-2024-02-21 11:06:38,508 - INFO - image_processing.py: 96 - Processing: GameName
-2024-02-21 11:06:38,508 - INFO - image_processing.py: 100 - One image file located.
-2024-02-21 11:06:38,508 - INFO - image_processing.py: 96 - Processing: final
-2024-02-21 11:06:38,508 - INFO - image_processing.py: 103 - Two image files located.
-2024-02-21 11:06:38,508 - INFO - image_processing.py: 107 - Grouping images due to proximity.
-2024-02-21 11:06:38,508 - INFO - image_processing.py: 96 - Processing: chapters
-2024-02-21 11:06:38,508 - INFO - image_processing.py: 113 - Beginning DBSCAN clustering.
-2024-02-21 11:06:38,509 - INFO - image_processing.py: 231 - DBSCAN results: [0 0 0 0]
-2024-02-21 11:06:38,510 - INFO - image_processing.py: 231 - DBSCAN results: [0 0 0 0]
-2024-02-21 11:06:38,510 - INFO - image_processing.py: 238 - Grouping images as per clusters.
-2024-02-21 11:06:38,510 - INFO - image_processing.py: 244 - Box added to group: (0,0).
-2024-02-21 11:06:38,510 - INFO - image_processing.py: 244 - Necklace added to group: (0,0).
-2024-02-21 11:06:38,510 - INFO - image_processing.py: 244 - Key added to group: (0,0).
-2024-02-21 11:06:38,510 - INFO - image_processing.py: 244 - Ring added to group: (0,0).
-2024-02-21 11:06:38,510 - INFO - image_processing.py: 246 - Formed 1 image groups.
-2024-02-21 11:06:38,510 - INFO - image_processing.py: 96 - Processing: stage-clear
-2024-02-21 11:06:38,510 - INFO - image_processing.py: 113 - Beginning DBSCAN clustering.
-2024-02-21 11:06:38,510 - INFO - image_processing.py: 231 - DBSCAN results: [0 1 2 3 4 4 5 6 5 5 4]
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 231 - DBSCAN results: [0 1 2 3 4 5 6 7 6 6 4]
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 238 - Grouping images as per clusters.
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 244 - mps added to group: (0,0).
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 244 - finaleclear added to group: (1,1).
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 244 - keeper added to group: (2,2).
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 244 - titleclear added to group: (3,3).
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 244 - Box added to group: (4,4).
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 244 - Key added to group: (4,5).
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 244 - trbl-corners added to group: (5,6).
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 244 - stageclear added to group: (6,7).
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 244 - box added to group: (5,6).
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 244 - mid-edges added to group: (5,6).
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 244 - NeckLace added to group: (4,4).
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 246 - Formed 8 image groups.
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 126 - Completed image grouping. Updating bounding boxes.
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 256 - Calculated MBR: (407, 59, 868, 363)
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 256 - Calculated MBR: (393, 590, 886, 708)
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 256 - Calculated MBR: (0, 81, 165, 145)
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 256 - Calculated MBR: (407, 59, 868, 363)
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 256 - Calculated MBR: (42, 51, 162, 172)
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 256 - Calculated MBR: (467, 585, 960, 703)
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 256 - Calculated MBR: (424, 56, 859, 117)
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 256 - Calculated MBR: (5, 86, 175, 155)
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 256 - Calculated MBR: (0, 79, 159, 140)
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 256 - Calculated MBR: (393, 584, 886, 708)
-2024-02-21 11:06:38,511 - INFO - image_processing.py: 256 - Calculated MBR: (409, 216, 867, 322)
-2024-02-21 11:06:38,517 - INFO - image_processing.py: 182 - Image processed: mps
-2024-02-21 11:06:38,521 - INFO - image_processing.py: 182 - Image processed: keeper
-2024-02-21 11:06:38,523 - INFO - image_processing.py: 182 - Image processed: collector
-2024-02-21 11:06:38,526 - INFO - image_processing.py: 182 - Image processed: Box
-2024-02-21 11:06:38,529 - INFO - image_processing.py: 182 - Image processed: Necklace
-2024-02-21 11:06:38,531 - INFO - image_processing.py: 182 - Image processed: Key
-2024-02-21 11:06:38,533 - INFO - image_processing.py: 182 - Image processed: Ring
-2024-02-21 11:06:38,539 - INFO - image_processing.py: 182 - Image processed: mps
-2024-02-21 11:06:38,539 - INFO - image_processing.py: 271 - mps relabelled as mps_1
-2024-02-21 11:06:38,542 - INFO - image_processing.py: 182 - Image processed: finaleclear
-2024-02-21 11:06:38,545 - INFO - image_processing.py: 182 - Image processed: keeper
-2024-02-21 11:06:38,545 - INFO - image_processing.py: 271 - keeper relabelled as keeper_1
-2024-02-21 11:06:38,547 - INFO - image_processing.py: 182 - Image processed: titleclear
-2024-02-21 11:06:38,550 - INFO - image_processing.py: 182 - Image processed: Box
-2024-02-21 11:06:38,550 - INFO - image_processing.py: 271 - Box relabelled as Box_1
-2024-02-21 11:06:38,552 - INFO - image_processing.py: 182 - Image processed: Key
-2024-02-21 11:06:38,552 - INFO - image_processing.py: 271 - Key relabelled as Key_1
-2024-02-21 11:06:38,555 - INFO - image_processing.py: 182 - Image processed: trbl-corners
-2024-02-21 11:06:38,558 - INFO - image_processing.py: 182 - Image processed: stageclear
-2024-02-21 11:06:38,560 - INFO - image_processing.py: 182 - Image processed: box
-2024-02-21 11:06:38,563 - INFO - image_processing.py: 182 - Image processed: mid-edges
-2024-02-21 11:06:38,566 - INFO - image_processing.py: 182 - Image processed: NeckLace
-2024-02-21 11:06:38,566 - INFO - image_processing.py: 166 - Image processing completed.
-2024-02-21 11:06:38,566 - INFO - main.py: 60 - Image files processed. Generating XML.
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 57 - Beginning image grouping.
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending mps to group: GameName_(407, 59, 868, 363)
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending keeper to group: final_(393, 590, 886, 708)
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending collector to group: final_(393, 590, 886, 708)
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending Box to group: chapters_(0, 81, 165, 145)
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending Necklace to group: chapters_(0, 81, 165, 145)
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending Key to group: chapters_(0, 81, 165, 145)
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending Ring to group: chapters_(0, 81, 165, 145)
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending mps_1 to group: stage-clear_(407, 59, 868, 363)
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending finaleclear to group: stage-clear_(42, 51, 162, 172)
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending keeper_1 to group: stage-clear_(467, 585, 960, 703)
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending titleclear to group: stage-clear_(424, 56, 859, 117)
-2024-02-21 11:06:38,566 - INFO - xml_generation.py: 65 - Appending Box_1 to group: stage-clear_(5, 86, 175, 155)
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 65 - Appending Key_1 to group: stage-clear_(0, 79, 159, 140)
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 65 - Appending trbl-corners to group: stage-clear_(393, 584, 886, 708)
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 65 - Appending stageclear to group: stage-clear_(409, 216, 867, 322)
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 65 - Appending box to group: stage-clear_(393, 584, 886, 708)
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 65 - Appending mid-edges to group: stage-clear_(393, 584, 886, 708)
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 65 - Appending NeckLace to group: stage-clear_(5, 86, 175, 155)
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 67 - Grouped 11 sets of images.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 95 - Creating WatchZone: GameName
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added mps.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 95 - Creating WatchZone: final
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added keeper.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added collector.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 95 - Creating WatchZone: chapters
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added Box.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added Necklace.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added Key.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added Ring.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 95 - Creating WatchZone: stage-clear
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added mps_1.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 95 - Creating WatchZone: stage-clear_1
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added finaleclear.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 95 - Creating WatchZone: stage-clear_2
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added keeper_1.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 95 - Creating WatchZone: stage-clear_3
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added titleclear.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 95 - Creating WatchZone: stage-clear_4
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added Box_1.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added NeckLace.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 95 - Creating WatchZone: stage-clear_5
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added Key_1.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 95 - Creating WatchZone: stage-clear_6
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added trbl-corners.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added box.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added mid-edges.
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 95 - Creating WatchZone: stage-clear_7
-2024-02-21 11:06:38,567 - INFO - xml_generation.py: 118 - Added stageclear.
-2024-02-21 11:06:38,568 - INFO - main.py: 66 - Completed XML. Generating ASL.
-2024-02-21 11:06:38,568 - INFO - main.py: 72 - Completed ASL. Generating VAS archive.
-2024-02-21 11:06:38,588 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: mps.png
-2024-02-21 11:06:38,589 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: final/keeper.png
-2024-02-21 11:06:38,590 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: final/collector.png
-2024-02-21 11:06:38,591 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: chapters/Box.png
-2024-02-21 11:06:38,592 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: chapters/Necklace.png
-2024-02-21 11:06:38,592 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: chapters/Key.png
-2024-02-21 11:06:38,593 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: chapters/Ring.png
-2024-02-21 11:06:38,611 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: stage-clear/mps_1.png
-2024-02-21 11:06:38,613 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: stage-clear/finaleclear.png
-2024-02-21 11:06:38,614 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: stage-clear/keeper_1.png
-2024-02-21 11:06:38,617 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: stage-clear/titleclear.png
-2024-02-21 11:06:38,618 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: stage-clear/Box_1.png
-2024-02-21 11:06:38,619 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: stage-clear/Key_1.png
-2024-02-21 11:06:38,620 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: stage-clear/trbl-corners.png
-2024-02-21 11:06:38,625 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: stage-clear/stageclear.png
-2024-02-21 11:06:38,627 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: stage-clear/box.png
-2024-02-21 11:06:38,628 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: stage-clear/mid-edges.png
-2024-02-21 11:06:38,628 - INFO - vas_archive_generation.py: 35 - Cropped image added to archive: stage-clear/NeckLace.png
-2024-02-21 11:06:38,628 - INFO - vas_archive_generation.py: 38 - script.asl created in archive.
-2024-02-21 11:06:38,628 - INFO - vas_archive_generation.py: 41 - structure.xml created in archive.
-2024-02-21 11:06:38,628 - INFO - vas_archive_generation.py: 43 - VAS archive created: /home/phrayse/VASFA/GameName/GameName.vas
-2024-02-21 11:06:38,628 - INFO - main.py: 81 - VAS archive created successfully.
+2024-02-24 12:45:36,298 - INFO:main.py: 60 - Gathering .png files.
+2024-02-24 12:45:36,317 - INFO:image_processing.py: 37 - mps: tl: (407, 59), br: (868, 363), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName
+2024-02-24 12:45:36,328 - INFO:image_processing.py: 37 - stageclear: tl: (409, 216), br: (867, 322), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/stage-clear
+2024-02-24 12:45:36,337 - INFO:image_processing.py: 37 - mid-edges: tl: (393, 590), br: (886, 708), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/stage-clear
+2024-02-24 12:45:36,346 - INFO:image_processing.py: 37 - titleclear: tl: (424, 56), br: (859, 117), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/stage-clear
+2024-02-24 12:45:36,355 - INFO:image_processing.py: 37 - trbl-corners: tl: (393, 590), br: (886, 708), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/stage-clear
+2024-02-24 12:45:36,365 - INFO:image_processing.py: 37 - finaleclear: tl: (42, 51), br: (162, 172), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/stage-clear
+2024-02-24 12:45:36,374 - INFO:image_processing.py: 37 - box: tl: (393, 584), br: (886, 702), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/stage-clear
+2024-02-24 12:45:36,383 - INFO:image_processing.py: 37 - Key: tl: (0, 79), br: (159, 140), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/stage-clear
+2024-02-24 12:45:36,391 - INFO:image_processing.py: 37 - Box: tl: (5, 86), br: (170, 150), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/stage-clear
+2024-02-24 12:45:36,398 - INFO:image_processing.py: 37 - keeper: tl: (467, 585), br: (960, 703), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/stage-clear
+2024-02-24 12:45:36,405 - INFO:image_processing.py: 37 - NeckLace: tl: (10, 92), br: (175, 155), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/stage-clear
+2024-02-24 12:45:36,415 - INFO:image_processing.py: 37 - mps: tl: (407, 59), br: (868, 363), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/stage-clear
+2024-02-24 12:45:36,422 - INFO:image_processing.py: 37 - keeper: tl: (393, 590), br: (886, 708), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/final
+2024-02-24 12:45:36,429 - INFO:image_processing.py: 37 - collector: tl: (393, 590), br: (886, 708), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/final
+2024-02-24 12:45:36,437 - INFO:image_processing.py: 37 - Key: tl: (0, 83), br: (164, 144), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/chapters
+2024-02-24 12:45:36,444 - INFO:image_processing.py: 37 - Box: tl: (0, 81), br: (165, 145), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/chapters
+2024-02-24 12:45:36,451 - INFO:image_processing.py: 37 - Ring: tl: (0, 82), br: (165, 145), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/chapters
+2024-02-24 12:45:36,458 - INFO:image_processing.py: 37 - Necklace: tl: (0, 82), br: (165, 145), dir: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/chapters
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 227 - Processing: GameName
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 230 - Beginning BFS.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 164 - Grouping images as per clusters.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - mps added to group: (0,0).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 172 - Formed 1 image groups.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 227 - Processing: stage-clear
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 230 - Beginning BFS.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 164 - Grouping images as per clusters.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - stageclear added to group: (0,0).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - mid-edges added to group: (1,1).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - titleclear added to group: (2,2).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - trbl-corners added to group: (1,1).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - finaleclear added to group: (3,3).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - box added to group: (1,1).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - Key added to group: (4,4).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - Box added to group: (4,5).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - keeper added to group: (5,6).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - NeckLace added to group: (4,5).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - mps added to group: (6,7).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 172 - Formed 8 image groups.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 227 - Processing: final
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 230 - Beginning BFS.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 164 - Grouping images as per clusters.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - keeper added to group: (0,0).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - collector added to group: (0,0).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 172 - Formed 1 image groups.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 227 - Processing: chapters
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 230 - Beginning BFS.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 164 - Grouping images as per clusters.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - Key added to group: (0,0).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - Box added to group: (0,0).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - Ring added to group: (0,0).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 170 - Necklace added to group: (0,0).
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 172 - Formed 1 image groups.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 243 - Completed image grouping. Updating bounding boxes.
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 110 - Calculated MBR: (407, 59, 868, 363)
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 110 - Calculated MBR: (409, 216, 867, 322)
+2024-02-24 12:45:36,459 - INFO:image_processing.py: 110 - Calculated MBR: (393, 584, 886, 708)
+2024-02-24 12:45:36,460 - INFO:image_processing.py: 110 - Calculated MBR: (424, 56, 859, 117)
+2024-02-24 12:45:36,460 - INFO:image_processing.py: 110 - Calculated MBR: (42, 51, 162, 172)
+2024-02-24 12:45:36,460 - INFO:image_processing.py: 110 - Calculated MBR: (0, 79, 159, 140)
+2024-02-24 12:45:36,460 - INFO:image_processing.py: 110 - Calculated MBR: (5, 86, 175, 155)
+2024-02-24 12:45:36,460 - INFO:image_processing.py: 110 - Calculated MBR: (467, 585, 960, 703)
+2024-02-24 12:45:36,460 - INFO:image_processing.py: 110 - Calculated MBR: (407, 59, 868, 363)
+2024-02-24 12:45:36,460 - INFO:image_processing.py: 110 - Calculated MBR: (393, 590, 886, 708)
+2024-02-24 12:45:36,460 - INFO:image_processing.py: 110 - Calculated MBR: (0, 81, 165, 145)
+2024-02-24 12:45:36,469 - INFO:image_processing.py: 136 - Image cropped: mps
+2024-02-24 12:45:36,477 - INFO:image_processing.py: 136 - Image cropped: stageclear
+2024-02-24 12:45:36,483 - INFO:image_processing.py: 136 - Image cropped: mid-edges
+2024-02-24 12:45:36,491 - INFO:image_processing.py: 136 - Image cropped: titleclear
+2024-02-24 12:45:36,497 - INFO:image_processing.py: 136 - Image cropped: trbl-corners
+2024-02-24 12:45:36,505 - INFO:image_processing.py: 136 - Image cropped: finaleclear
+2024-02-24 12:45:36,512 - INFO:image_processing.py: 136 - Image cropped: box
+2024-02-24 12:45:36,519 - INFO:image_processing.py: 136 - Image cropped: Key
+2024-02-24 12:45:36,526 - INFO:image_processing.py: 136 - Image cropped: Box
+2024-02-24 12:45:36,533 - INFO:image_processing.py: 136 - Image cropped: keeper
+2024-02-24 12:45:36,540 - INFO:image_processing.py: 136 - Image cropped: NeckLace
+2024-02-24 12:45:36,548 - INFO:image_processing.py: 136 - Image cropped: mps
+2024-02-24 12:45:36,549 - INFO:image_processing.py: 195 - mps relabelled as mps_1
+2024-02-24 12:45:36,555 - INFO:image_processing.py: 136 - Image cropped: keeper
+2024-02-24 12:45:36,555 - INFO:image_processing.py: 195 - keeper relabelled as keeper_1
+2024-02-24 12:45:36,562 - INFO:image_processing.py: 136 - Image cropped: collector
+2024-02-24 12:45:36,569 - INFO:image_processing.py: 136 - Image cropped: Key
+2024-02-24 12:45:36,569 - INFO:image_processing.py: 195 - Key relabelled as Key_1
+2024-02-24 12:45:36,576 - INFO:image_processing.py: 136 - Image cropped: Box
+2024-02-24 12:45:36,576 - INFO:image_processing.py: 195 - Box relabelled as Box_1
+2024-02-24 12:45:36,583 - INFO:image_processing.py: 136 - Image cropped: Ring
+2024-02-24 12:45:36,590 - INFO:image_processing.py: 136 - Image cropped: Necklace
+2024-02-24 12:45:36,590 - INFO:image_processing.py: 283 - Image processing completed.
+2024-02-24 12:45:36,590 - INFO:main.py: 68 - Image files processed. Generating XML.
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 23 - Beginning image grouping.
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending mps to group: GameName_(407, 59, 868, 363)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending stageclear to group: stage-clear_(409, 216, 867, 322)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending mid-edges to group: stage-clear_(393, 584, 886, 708)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending titleclear to group: stage-clear_(424, 56, 859, 117)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending trbl-corners to group: stage-clear_(393, 584, 886, 708)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending finaleclear to group: stage-clear_(42, 51, 162, 172)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending box to group: stage-clear_(393, 584, 886, 708)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending Key to group: stage-clear_(0, 79, 159, 140)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending Box to group: stage-clear_(5, 86, 175, 155)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending keeper to group: stage-clear_(467, 585, 960, 703)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending NeckLace to group: stage-clear_(5, 86, 175, 155)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending mps_1 to group: stage-clear_(407, 59, 868, 363)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending keeper_1 to group: final_(393, 590, 886, 708)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending collector to group: final_(393, 590, 886, 708)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending Key_1 to group: chapters_(0, 81, 165, 145)
+2024-02-24 12:45:36,590 - INFO:xml_generation.py: 31 - Appending Box_1 to group: chapters_(0, 81, 165, 145)
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 31 - Appending Ring to group: chapters_(0, 81, 165, 145)
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 31 - Appending Necklace to group: chapters_(0, 81, 165, 145)
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 33 - Grouped 11 sets of images.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 74 - Creating WatchZone: GameName
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added mps.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 74 - Creating WatchZone: stage-clear
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added stageclear.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 74 - Creating WatchZone: stage-clear_1
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added mid-edges.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added trbl-corners.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added box.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 74 - Creating WatchZone: stage-clear_2
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added titleclear.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 74 - Creating WatchZone: stage-clear_3
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added finaleclear.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 74 - Creating WatchZone: stage-clear_4
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added Key.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 74 - Creating WatchZone: stage-clear_5
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added Box.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added NeckLace.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 74 - Creating WatchZone: stage-clear_6
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added keeper.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 74 - Creating WatchZone: stage-clear_7
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added mps_1.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 74 - Creating WatchZone: final
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added keeper_1.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added collector.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 74 - Creating WatchZone: chapters
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added Key_1.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added Box_1.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added Ring.
+2024-02-24 12:45:36,591 - INFO:xml_generation.py: 97 - Added Necklace.
+2024-02-24 12:45:36,592 - INFO:main.py: 74 - Completed XML. Generating ASL.
+2024-02-24 12:45:36,592 - INFO:main.py: 80 - Completed ASL. Generating VAS archive.
+2024-02-24 12:45:36,614 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: mps.png
+2024-02-24 12:45:36,622 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: stage-clear/stageclear.png
+2024-02-24 12:45:36,624 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: stage-clear/mid-edges.png
+2024-02-24 12:45:36,629 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: stage-clear/titleclear.png
+2024-02-24 12:45:36,631 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: stage-clear/trbl-corners.png
+2024-02-24 12:45:36,634 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: stage-clear/finaleclear.png
+2024-02-24 12:45:36,636 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: stage-clear/box.png
+2024-02-24 12:45:36,637 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: stage-clear/Key.png
+2024-02-24 12:45:36,638 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: stage-clear/Box.png
+2024-02-24 12:45:36,641 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: stage-clear/keeper.png
+2024-02-24 12:45:36,642 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: stage-clear/NeckLace.png
+2024-02-24 12:45:36,668 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: stage-clear/mps_1.png
+2024-02-24 12:45:36,671 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: final/keeper_1.png
+2024-02-24 12:45:36,673 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: final/collector.png
+2024-02-24 12:45:36,674 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: chapters/Key_1.png
+2024-02-24 12:45:36,675 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: chapters/Box_1.png
+2024-02-24 12:45:36,676 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: chapters/Ring.png
+2024-02-24 12:45:36,678 - INFO:vas_archive_generation.py: 33 - Cropped image added to archive: chapters/Necklace.png
+2024-02-24 12:45:36,678 - INFO:vas_archive_generation.py: 36 - script.asl created in archive.
+2024-02-24 12:45:36,678 - INFO:vas_archive_generation.py: 39 - structure.xml created in archive.
+2024-02-24 12:45:36,678 - INFO:vas_archive_generation.py: 41 - VAS archive created: /home/phrayse/PycharmProjects/VAS-File-Architect/GameName/GameName.vas
+2024-02-24 12:45:36,678 - INFO:main.py: 89 - VAS archive created successfully.
