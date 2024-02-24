@@ -1,21 +1,14 @@
 """
-VAS File Architect: Main Module
+VAS File Architect
 
-Coordinates the overall workflow of the VAS File Architect. This module orchestrates the
-processes of image processing, XML and ASL file generation, and the creation of a VAS
-archive. It includes a GUI-based directory selection and handles the application's main
-execution flow.
+Coordinates the overall workflow:
+ - image processing,
+ - ASL and XML file generation,
+ - creation of a VAS archive.
 
-Functions:
-    main():
-        Orchestrates the workflow of image processing, XML and ASL file generation, and VAS archive creation.
-        Returns:
-            None
+Creates a log file in the target directory.
 
-    select_directory():
-        Opens a GUI dialog for directory selection and returns the chosen directory.
-        Returns:
-            str: The path of the selected directory.
+Acts as the error handler for all other modules.
 """
 import logging
 from pathlib import Path
@@ -26,28 +19,43 @@ from image_processing import process_all_images
 from vas_archive_generation import create_vas_archive
 from xml_generation import create_xml
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(levelname)s - %(filename)s: %(lineno)d - %(message)s',
-                    filename='vasfa.log',
-                    filemode='w')
 logging.getLogger("PIL").setLevel(logging.INFO)
 
 
 def select_directory():
+    """
+    Open an interface for directory selection.
+
+    :return: Path to chosen directory.
+    :rtype: Path
+    :raise FileNotFoundError: if no directory was selected, or selected directory does not exist.
+    """
     root = Tk()
     root.withdraw()
-    directory = filedialog.askdirectory(mustexist=True)
+    directory = Path(filedialog.askdirectory(mustexist=True))
 
     if not directory:
         raise FileNotFoundError("No directory selected.")
+
+    log_file = directory / 'vasfa.log'
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s - %(levelname)s:%(filename)s: %(lineno)d - %(message)s',
+                        filename=log_file,
+                        filemode='w')
 
     return directory
 
 
 def main():
+    """
+    Orchestrates the workflow of image processing, XML and ASL file generation, and VAS archive creation.
+
+    :rtype: None
+    :raise RuntimeError: if any of the key processes fail: image processing, XML generation,
+    ASL generation, or VAS archive generation.
+    """
     try:
-        directory = select_directory()
-        path = Path(directory)
+        path = select_directory()
 
         logging.info("Gathering .png files.")
         image_filepaths = list(path.rglob('*.png'))
@@ -80,8 +88,9 @@ def main():
 
         logging.info(final_message)
         messagebox.showinfo("VAS File Architect", final_message)
-
-    except (FileNotFoundError, RuntimeError, Exception) as e:
+    except FileNotFoundError as e:
+        logging.error(e)
+    except (RuntimeError, Exception) as e:
         logging.error(e)
         messagebox.showerror("Error", str(e))
 
